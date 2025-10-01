@@ -1,5 +1,11 @@
-FROM chromadb/chroma:latest
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Cài chromadb
+RUN pip install --no-cache-dir chromadb
 
 EXPOSE 8000
 
-CMD ["chroma", "run", "--host", "0.0.0.0", "--port", "8000"]
+# Chạy chroma server
+CMD ["python", "-m", "chromadb", "run", "--host", "0.0.0.0", "--port", "8000"]
