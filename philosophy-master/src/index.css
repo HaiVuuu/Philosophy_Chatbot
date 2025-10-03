@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Parchment & Reason Theme (Light) */
+    --background: 36 25% 92%; /* #F5EFE6 - Aged Parchment Beige */
+    --foreground: 32 7% 17%; /* #2C2A26 - Dark Sepia Gray */
+
+    --card: 36 25% 95%;
+    --card-foreground: 32 7% 17%;
+
+    --popover: 36 25% 92%;
+    --popover-foreground: 32 7% 17%;
+
+    --primary: 32 7% 17%; /* Dark Sepia Gray */
+    --primary-foreground: 36 25% 92%;
+
+    --secondary: 32 21% 50%; /* #857A69 - Weathery Bronze Brown */
+    --secondary-foreground: 36 25% 92%;
+
+    --muted: 36 25% 88%; /* Lighter parchment */
+    --muted-foreground: 32 21% 50%;
+
+    --accent: 38 62% 52%; /* #D4983E - Brilliant Amber Gold */
+    --accent-foreground: 32 7% 17%;
+
+    --destructive: 4 89% 55%;
+    --destructive-foreground: 36 25% 92%;
+
+    --border: 0 0% 92%; /* #EAEAEA - Light Stone Gray */
+    --input: 0 0% 92%;
+    --ring: 38 62% 52%;
+
+    --radius: 0.75rem;
+
+    /* Philosophy App Specific Colors */
+    --philosopher-bg: 36 25% 97%; /* Philosopher message background */
+    --user-bg: 36 25% 89%; /* User message background */
+    --sidebar-background: 36 25% 90%;
+    --sidebar-foreground: 32 7% 17%;
+    --sidebar-primary: 38 62% 52%;
+    --sidebar-primary-foreground: 36 25% 92%;
+    --sidebar-accent: 36 25% 85%;
+    --sidebar-accent-foreground: 32 7% 17%;
+    --sidebar-border: 0 0% 92%;
+    --sidebar-ring: 38 62% 52%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(38, 62%, 52%), hsl(32, 21%, 50%));
+    --gradient-bg: linear-gradient(180deg, hsl(36, 25%, 92%), hsl(36, 25%, 88%));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(32 7% 17% / 0.1);
+    --shadow-glow: 0 0 40px hsl(38 62% 52% / 0.2);
+  }
+
+  .dark {
+    /* Cosmos & Consciousness Theme (Dark) */
+    --background: 225 56% 5%; /* #0B0D18 - Cosmic Midnight Blue */
+    --foreground: 54 79% 52%; /* #EAE720 - Soft Cream White (corrected) */
+
+    --card: 225 56% 7%;
+    --card-foreground: 54 79% 52%;
+
+    --popover: 225 56% 5%;
+    --popover-foreground: 54 79% 52%;
+
+    --primary: 54 79% 52%; /* Soft Cream White */
+    --primary-foreground: 225 56% 5%;
+
+    --secondary: 223 22% 14%; /* #1C1F26 - Dark Charcoal Gray */
+    --secondary-foreground: 54 79% 52%;
+
+    --muted: 223 22% 14%;
+    --muted-foreground: 54 20% 70%;
+
+    --accent: 8 55% 52%; /* #D3523B - Forge-Fire Red */
+    --accent-foreground: 54 79% 52%;
+
+    --destructive: 8 55% 52%;
+    --destructive-foreground: 54 79% 52%;
+
+    --border: 223 22% 14%; /* Dark Charcoal Gray */
+    --input: 223 22% 14%;
+    --ring: 8 55% 52%;
+
+    /* Philosophy App Specific Colors (Dark) */
+    --philosopher-bg: 225 56% 8%; /* Darker philosopher background */
+    --user-bg: 223 22% 14%; /* User message background */
+    --sidebar-background: 225 56% 6%;
+    --sidebar-foreground: 54 79% 52%;
+    --sidebar-primary: 8 55% 52%;
+    --sidebar-primary-foreground: 54 79% 52%;
+    --sidebar-accent: 223 22% 14%;
+    --sidebar-accent-foreground: 54 79% 52%;
+    --sidebar-border: 223 22% 14%;
+    --sidebar-ring: 8 55% 52%;
+    
+    /* Gradients (Dark) */
+    --gradient-primary: linear-gradient(135deg, hsl(8, 55%, 52%), hsl(310, 34%, 51%));
+    --gradient-bg: linear-gradient(180deg, hsl(225, 56%, 5%), hsl(225, 56%, 8%));
+    
+    /* Shadows (Dark) */
+    --shadow-elegant: 0 10px 30px -10px hsl(8 55% 52% / 0.3);
+    --shadow-glow: 0 0 40px hsl(8 55% 52% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
