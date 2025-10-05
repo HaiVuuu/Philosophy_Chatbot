@@ -1,3 +1,7 @@
+# Yêu cầu pip cài đặt phiên bản PyTorch chỉ dành cho CPU để tiết kiệm bộ nhớ
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+
 flask
 flask_cors
 langchain
