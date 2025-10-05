@@ -68,10 +68,85 @@ initialize_chatbot()
 
 # --- Định nghĩa các Route (API Endpoints) ---
 
+
+# Biến HTML_TEMPLATE chứa giao diện chatbot
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html lang=\"vi\">
+<head>
+    <title>Chatbot Triết Học</title>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f6fa; margin: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 32px; }
+        h1 { color: #4a90e2; text-align: center; }
+        .chatbox { min-height: 300px; border: 1px solid #eee; border-radius: 8px; padding: 16px; margin-bottom: 16px; background: #fafbfc; }
+        .message { margin: 12px 0; padding: 12px 18px; border-radius: 18px; max-width: 80%; word-break: break-word; }
+        .user { background: #d0e7ff; text-align: right; margin-left: auto; }
+        .bot { background: #e0f7fa; text-align: left; margin-right: auto; }
+        .input-area { display: flex; gap: 10px; }
+        .question { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 18px; font-size: 15px; }
+        .send-btn { padding: 12px 24px; background: #4a90e2; color: #fff; border: none; border-radius: 18px; cursor: pointer; font-size: 15px; }
+        .send-btn:hover { background: #357abd; }
+    </style>
+</head>
+<body>
+    <div class=\"container\">
+        <h1>Chatbot Triết Học</h1>
+        <div class=\"chatbox\" id=\"chatbox\"></div>
+        <div class=\"input-area\">
+            <input type=\"text\" class=\"question\" id=\"question\" placeholder=\"Nhập câu hỏi triết học...\">
+            <button class=\"send-btn\" id=\"sendBtn\">Gửi</button>
+        </div>
+    </div>
+    <script>
+    const chatbox = document.getElementById('chatbox');
+    const questionInput = document.getElementById('question');
+    const sendBtn = document.getElementById('sendBtn');
+    let conversation = [];
+    function addMessage(content, sender) {
+        const msg = document.createElement('div');
+        msg.className = 'message ' + sender;
+        msg.innerHTML = content.replace(/\n/g, '<br>');
+        chatbox.appendChild(msg);
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+    sendBtn.onclick = function() {
+        const question = questionInput.value.trim();
+        if (!question) return;
+        addMessage(question, 'user');
+        questionInput.value = '';
+        addMessage('Đang suy nghĩ...', 'bot');
+        fetch('/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question })
+        })
+        .then(res => res.json())
+        .then(data => {
+            chatbox.querySelector('.bot:last-child').remove();
+            if (data.answer) addMessage(data.answer, 'bot');
+            else addMessage('Lỗi: ' + (data.error || 'Không nhận được phản hồi'), 'bot');
+        })
+        .catch(() => {
+            chatbox.querySelector('.bot:last-child').remove();
+            addMessage('Lỗi kết nối server!', 'bot');
+        });
+    };
+    questionInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') sendBtn.click();
+    });
+    </script>
+</body>
+</html>
+"""
+
+from flask import render_template_string
+
 @app.route('/', methods=['GET'])
 def home():
-    """Endpoint để kiểm tra API có hoạt động không."""
-    return "Chatbot API with custom logic is up and running!"
+    return render_template_string(HTML_TEMPLATE)
 
 @app.route('/ask', methods=['POST'])
 def ask_question():

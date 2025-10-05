@@ -3,7 +3,7 @@ flask_cors
 langchain
 langchain-community
 langchain-google-genai
-langchain_huggingface
+langchain-huggingface
 google-generativeai
 faiss-cpu
 tiktoken
@@ -11,3 +11,5 @@ pymupdf
 unstructured # Thư viện cần thiết cho UnstructuredWordDocumentLoader
 python-docx # Phụ thuộc của unstructured
 gunicorn
+sentence-transformers
+PyPDF2
