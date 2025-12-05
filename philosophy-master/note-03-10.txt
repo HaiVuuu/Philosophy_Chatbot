@@ -1,2 +1,0 @@
-Chạy script "npm run dev:all" trước để server hoạt động
-Chạy script "npm run seed" để đẩy data vào chromadb
