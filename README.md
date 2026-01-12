@@ -46,8 +46,8 @@ Dự án này được thiết kế để chạy trong môi trường Kaggle Not
 2.  **Cấu hình API Key**:
     -   Lấy API Key của bạn từ Google AI Studio.
     -   Trong cell thứ 2, thay thế `""` bằng API Key của bạn: `os.environ["GOOGLE_API_KEY"] = "YOUR_API_KEY_HERE"`
-    -   (Tùy chọn) Cấu hình token `ngrok` nếu cần.
-3.  **Chạy Toàn Bộ**: Chọn "Run All" để thực thi tất cả các cell trong notebook.
+    -   Cấu hình token `ngrok` for fast deployment and tesing
+3.  **Chạy Toàn Bộ**: Chọn "Run All" để thực thi tất cả các cell trong notebook (Nhớ điều chỉnh đường dẫn tới các file path khác nhau).
 4.  **Truy Cập Ứng Dụng**: Sau khi cell cuối cùng chạy xong, một đường link `ngrok.io` sẽ xuất hiện. Nhấp vào đó để mở giao diện chatbot trong trình duyệt của bạn.
 
 ## Các Triết Gia AI
